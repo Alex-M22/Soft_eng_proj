@@ -2,6 +2,10 @@ import cv2 as cv
 from reader import read_plate
 from roboflow import Roboflow
 from finder import find_plate
+import db_search
+from popup import Popup
+from PyQt5 import QtWidgets
+import sys
 
 
 def main():
@@ -16,9 +20,12 @@ def main():
     # Currently a video but would be the camera capture
     vidcap = cv.VideoCapture('pics/carvid.MOV')
     success, img = vidcap.read()
+    app = QtWidgets.QApplication(sys.argv)
+
 
     # Continuously running until video ends/camera is turned off
     while(running):
+
         count += 1
         # Grabs frame from video and reads next frame
         cv.imwrite("frame.jpg", img)
@@ -39,12 +46,18 @@ def main():
             continue
         # Words/characters returned from reader 
         numbers = read_plate(b, "frame.jpg")
+        for num in numbers:
+            in_db = db_search.search(num)
+            print(f"{'db search: '}{in_db}")
+            if len(in_db) == 0:
+                poppy = Popup(num)
+                poppy.show()
+                app.exec_()
 
+            elif in_db[0][3] != "Student":
+                pop2 = Popup(in_db[0])
+                pop2.show()
+                app.exec_()
 
-
-
-
-
-
-
-main()
+if __name__ == "__main__":
+    main()
