@@ -1,0 +1,5 @@
+pip install roboflow
+pip install opencv-python
+pip install PyQt5
+pip install matplotlib
+pip install easyocr

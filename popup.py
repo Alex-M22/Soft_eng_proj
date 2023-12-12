@@ -25,7 +25,7 @@ class Popup(QtWidgets.QWidget):
         else:
             title_label = QtWidgets.QLabel(" ".join(('Plate Number: ', plate_num[0])), self)
             name_label = QtWidgets.QLabel(" ".join(('Owner Name: ', plate_num[1])), self)
-            id_label = QtWidgets.QLabel(" ".join(('Fl Tech ID: ', str(plate_num[2]))), self)
+            id_label = QtWidgets.QLabel(" ".join(('FL Tech ID: ', str(plate_num[2]))), self)
             end_label = QtWidgets.QLabel('is not allowed to be parked here', self)
             name_label.setAlignment(QtCore.Qt.AlignCenter)
             id_label.setAlignment(QtCore.Qt.AlignCenter)

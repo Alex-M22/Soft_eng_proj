@@ -11,7 +11,7 @@ import sys
 def main():
 
     # License plate recognition model
-    rf = Roboflow(api_key="QlNTkXMtD5ifeiNhia0A")
+    rf = Roboflow(api_key="wHc4MvTyretYQy00UxqU")
     project = rf.workspace().project("yolov7-license-plate-detection")
     model = project.version(3).model
 
@@ -22,7 +22,6 @@ def main():
     success, img = vidcap.read()
     app = QtWidgets.QApplication(sys.argv)
 
-
     # Continuously running until video ends/camera is turned off
     while(running):
 
@@ -31,7 +30,7 @@ def main():
         cv.imwrite("frame.jpg", img)
         success, img = vidcap.read()
 
-        # If it cannot read a frame then end 
+        # If it cannot read a frame then end
         if not success:
             running = False
 
@@ -44,7 +43,7 @@ def main():
         # if no license plate is found then go to next frame
         if b == None:
             continue
-        # Words/characters returned from reader 
+        # Words/characters returned from reader
         numbers = read_plate(b, "frame.jpg")
         for num in numbers:
             in_db = db_search.search(num)
@@ -58,6 +57,7 @@ def main():
                 pop2 = Popup(in_db[0])
                 pop2.show()
                 app.exec_()
+
 
 if __name__ == "__main__":
     main()

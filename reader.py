@@ -43,7 +43,8 @@ def read_plate(bounds, img_path):
             # print(text)
             possible_plates.append(text.replace(" ", ""))
 
-    # plotting pictures to show if it found license plate and what the easyocr sees when it runs its code
+    # plotting pictures to show if it found license plate and
+    # what the easyocr sees when it runs its code
 
     # plt.figure()
     # plt.imshow(cv.cvtColor(img, cv.COLOR_BGR2RGB))
@@ -52,7 +53,7 @@ def read_plate(bounds, img_path):
 
     # plt.figure()
     # plt.imshow(cv.cvtColor(license_plate_thresh, cv.COLOR_BGR2RGB))
-    # cv.imwrite("neg.jpg", cv.cvtColor(license_plate_thresh, cv.COLOR_BGR2RGB))
+    cv.imwrite("neg.jpg", cv.cvtColor(license_plate_thresh, cv.COLOR_BGR2RGB))
 
     plt.show()
 
